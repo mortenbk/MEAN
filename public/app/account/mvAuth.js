@@ -1,4 +1,4 @@
-angular.module("app").factory("mvAuth", function($http, mvIdentity, $q, mvUser, $window) {
+angular.module("app").factory("mvAuth", function($http, mvIdentity, $q, mvUser) {
     return {
         authenticateUser: function(userName, password) {
             var deferred = $q.defer();
@@ -56,7 +56,7 @@ angular.module("app").factory("mvAuth", function($http, mvIdentity, $q, mvUser, 
             }
         },
         authorizeAuthenticatedUserForRoute: function() {
-            if(mvIdentity.isAuthorized("admin")) {
+            if(mvIdentity.isAuthenticated()) {
                 return true;
             } else {
                 return $q.reject("not authorized")

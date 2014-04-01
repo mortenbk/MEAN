@@ -41,6 +41,19 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
         resolve: routeRoleChecks.user
 
     });
+
+
+    $routeProvider.when("/courses", {
+        templateUrl: "/partials/courses/course-list",
+        controller: "mvCoursesListCtrl"
+
+    });
+
+    $routeProvider.when("/courses/:id", {
+        templateUrl: "/partials/courses/course-details",
+        controller: "mvCourseDetailCtrl"
+
+    });
 });
 
 angular.module("app").run(function($rootScope, $location) {

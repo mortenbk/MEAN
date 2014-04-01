@@ -35,6 +35,7 @@ exports.updateUser = function(req, res) {
     var userUpdates = req.body;
 
     if(req.user._id != userUpdates._id && !req.user.hasRole("admin")) {
+        console.log("Users : returning 403");
         res.status(403);
         return res.end();
     }
@@ -51,7 +52,8 @@ exports.updateUser = function(req, res) {
         if(err) {
             res.status(400);
             return res.send({reason: err.toString()});
-            res.send(req.user);
+
         }
+        res.send(req.user);
     });
 }
