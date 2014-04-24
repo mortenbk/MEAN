@@ -6,11 +6,9 @@ var passport = require("passport"),
 module.exports = function() {
     passport.use(new LocalStrategy(
         function(userName, password, done) {
-            console.log("Passport : user - " + userName + " : " + password);
             User.findOne({
                 userName: userName
             }).exec(function(err, user) {
-                    console.log("Exec : user - " + user);
                     if(user && user.authenticate(password)) {
                         return done(null, user);
                     } else {
